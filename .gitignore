@@ -523,3 +523,5 @@ $RECYCLE.BIN/
 # Local History for Visual Studio
 
 # End of https://www.gitignore.io/api/csharp,windows,visualstudio
+
+.DS_Store
