@@ -33,6 +33,7 @@
             </DataGrid.Columns>
  
         </DataGrid>
-        <Button Content="Commit order" HorizontalAlignment="Left" Margin="604,212,0,0" VerticalAlignment="Top" Width="178" Click="commitOrderClick"/>
+        <Button Content="Commit order" HorizontalAlignment="Left" Margin="604,355,0,0" VerticalAlignment="Top" Width="178" Click="commitOrderClick"/>
+        <Button Content="Log out" Name="btnLogOut" HorizontalAlignment="Left" Margin="604, 383, 0, 0" VerticalAlignment="Top" Width="178" Click="btnLogOut_Click"/>
     </Grid>
 </Window>

@@ -49,7 +49,7 @@ namespace OrderLib
         public void submitOrder()
         {
 
-            StreamWriter streamWriter = new StreamWriter(@"\\Mac\Home\Documents\gitPlatform\SBTDDTask3\OrderLib\bin\Orders.txt", true);
+            StreamWriter streamWriter = new StreamWriter(@"C:\Task3\SBTDDTask3\OrderLib\Orders.txt", true);
             streamWriter.WriteLine("Order " + OrderN.getOrderNum() + " " + ClientFullName);
             foreach (var item in sushis)
                 streamWriter.WriteLine(item.Name + " " + item.Price);
