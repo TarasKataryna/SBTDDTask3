@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OrderLib
 {
-    public class Sashimi:Sushi
+    public class Sashimi : Sushi
     {
         public Sashimi()
         {

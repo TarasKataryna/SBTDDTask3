@@ -5,10 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Task3"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="580.8" Width="972.8">
     <Grid>
-        <TextBox Name="textbox1"></TextBox>
-        <DataGrid x:Name="SushiDataGrid" HorizontalAlignment="Left" Height="180" Margin="10,10,0,0" VerticalAlignment="Top" Width="772">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBox Name="textbox1" Margin="0,0,-0.6,0.2" Grid.ColumnSpan="2"></TextBox>
+        <DataGrid x:Name="SushiDataGrid" HorizontalAlignment="Left" Margin="10,32,0,319.2" Width="930" Grid.Column="1">
             <!--Style of column heading-->
             <DataGrid.Resources>
                 <Style TargetType="{x:Type DataGridColumnHeader}">
@@ -20,20 +24,50 @@
             </DataGrid.Resources>
             <!--Column header text-->
             <DataGrid.Columns>
-                <DataGridTextColumn Header= "Name"  Binding="{Binding Name}" Width="150"/>
-                <DataGridTextColumn Header= "Description" Binding="{Binding Description}" Width="350"/>
-                <DataGridTextColumn Header= "Price" Binding="{Binding Price}" Width = "150"/>
-                <DataGridTemplateColumn Header="Add ? " Width = "120">
+                <DataGridTextColumn  Header= "Name"  Binding="{Binding Name}" Width="175"/>
+                <DataGridTextColumn Header= "Description" Binding="{Binding Description}" Width="445"/>
+                <DataGridTextColumn Header= "Price" Binding="{Binding Price}" Width = "200"/>
+                <DataGridTemplateColumn Header="Add ? " Width = "100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Add" Click="AddToOrderButton_Click"/>
+                            <Button Content="Add" Click="AddToOrderButton_Click"></Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
- 
+
         </DataGrid>
-        <Button Content="Commit order" HorizontalAlignment="Left" Margin="604,355,0,0" VerticalAlignment="Top" Width="178" Click="commitOrderClick"/>
-        <Button Content="Log out" Name="btnLogOut" HorizontalAlignment="Left" Margin="604, 383, 0, 0" VerticalAlignment="Top" Width="178" Click="btnLogOut_Click"/>
+
+        <Button Content="Commit order" HorizontalAlignment="Left" Margin="733,460,0,0" VerticalAlignment="Top" Width="178" Click="commitOrderClick" Grid.Column="1" Height="19"/>
+        <Button Content="Log out" Name="btnLogOut" HorizontalAlignment="Left" Margin="733,501,0,0" VerticalAlignment="Top" Width="178" Click="btnLogOut_Click" Grid.Column="1" Height="19"/>
+        <Label Content="MENU" HorizontalAlignment="Center" Margin="475,10,442.4,0" VerticalAlignment="Top" Height="27" RenderTransformOrigin="2.992,-6.047" Width="49" Grid.Column="1"/>
+        <Label Content="Your order" HorizontalAlignment="Center" Margin="475,232,425.4,0" VerticalAlignment="Top" Grid.Column="1" Height="26" Width="66"/>
+        <DataGrid x:Name="SushiOrder" HorizontalAlignment="Left" Height="189" Margin="10,263,0,0" VerticalAlignment="Top" Width="930" Grid.Column="1">
+            <!--Style of column heading-->
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="AliceBlue"/>
+                    <Setter Property="FontWeight" Value="SemiBold"/>
+                    <Setter Property="BorderThickness" Value="1,1,1,1"/>
+                    <Setter Property="BorderBrush" Value="Black"/>
+                </Style>
+            </DataGrid.Resources>
+            <!--Column header text-->
+            <DataGrid.Columns>
+                <DataGridTextColumn Header= "Name"  Binding="{Binding Name}" Width="175"/>
+                <DataGridTextColumn Header= "Description" Binding="{Binding Description}" Width="445"/>
+                <DataGridTextColumn Header= "Price" Binding="{Binding Price}" Width = "200"/>
+                <DataGridTemplateColumn Header="Delete " Width = "100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Delete" Click="DeleteFromOrderButton_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <TextBox x:Name="textBox" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="582,460,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="0"/>
+        <Label Grid.ColumnSpan="2" Content="Total sum" HorizontalAlignment="Left" Margin="493,457,0,0" VerticalAlignment="Top" Width="67" RenderTransformOrigin="0.606,2.375"/>
     </Grid>
 </Window>
