@@ -12,6 +12,7 @@ namespace OrderLib
         public List<Sushi> sushis;
         public double TotalPrice { get; protected set; }
         public string ClientFullName { get; protected set; }
+        public bool isSubmitted = false;
 
         public Order()
         {
@@ -56,6 +57,7 @@ namespace OrderLib
             streamWriter.WriteLine("Total price: " + TotalPrice);
             streamWriter.WriteLine();
             streamWriter.Close();
+            isSubmitted = true;
         }
 
         public Order findOrderByName(string name, StreamReader streamReader)

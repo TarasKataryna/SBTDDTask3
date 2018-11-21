@@ -87,9 +87,33 @@ namespace Task3
 
         private void btnLogOut_Click(object sender, RoutedEventArgs e)
         {
-            LoginWindow loginWindow = new LoginWindow();
-            loginWindow.Show();
-            this.Close();
+            if (order.isSubmitted)
+            {
+                LoginWindow loginWindow = new LoginWindow();
+                loginWindow.Show();
+                this.Close();
+            }
+            else
+            {
+                string messageBoxText = "Order was not submitted, are you sure you want to log out?";
+                string caption = "Word Processor";
+                MessageBoxButton button = MessageBoxButton.YesNo;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+
+                MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
+
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        LoginWindow loginWindow = new LoginWindow();
+                        loginWindow.Show();
+                        this.Close();
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                }
+
+            }
         }
     }
 }
