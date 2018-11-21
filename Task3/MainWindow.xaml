@@ -8,5 +8,31 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <TextBox Name="textbox1"></TextBox>
+        <DataGrid x:Name="SushiDataGrid" HorizontalAlignment="Left" Height="180" Margin="10,10,0,0" VerticalAlignment="Top" Width="772">
+            <!--Style of column heading-->
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="AliceBlue"/>
+                    <Setter Property="FontWeight" Value="SemiBold"/>
+                    <Setter Property="BorderThickness" Value="1,1,1,1"/>
+                    <Setter Property="BorderBrush" Value="Black"/>
+                </Style>
+            </DataGrid.Resources>
+            <!--Column header text-->
+            <DataGrid.Columns>
+                <DataGridTextColumn Header= "Name"  Binding="{Binding Name}" Width="150"/>
+                <DataGridTextColumn Header= "Description" Binding="{Binding Description}" Width="350"/>
+                <DataGridTextColumn Header= "Price" Binding="{Binding Price}" Width = "150"/>
+                <DataGridTemplateColumn Header="Add ? " Width = "120">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Add" Click="AddToOrderButton_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+ 
+        </DataGrid>
+        <Button Content="Commit order" HorizontalAlignment="Left" Margin="604,212,0,0" VerticalAlignment="Top" Width="178" Click="commitOrderClick"/>
     </Grid>
 </Window>

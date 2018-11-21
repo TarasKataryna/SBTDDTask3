@@ -35,11 +35,34 @@ namespace Task3
             newOo.submitOrder();
 
             Order kk = new Order();
-            StreamReader streamReader = new StreamReader(@"C:\Users\tarik\source\repos\Task3\OrderLib\bin\Debug\Orders.txt");
+            StreamReader streamReader = new StreamReader(@"\\Mac\Home\Documents\gitPlatform\SBTDDTask3\OrderLib\bin\Orders.txt");
             var t = kk.findOrderByName("q", streamReader);
             streamReader.Close();
             t.submitOrder();
 
+            //inserting data griedview with all catalog of availbaile sushis
+            List<Sushi> allSushis = new List<Sushi> { new Maki(), new Nigiri(), new Sashimi(), new Uramaki(), new Rolls(), new Cheaps() };
+            foreach (Sushi s in allSushis)
+                {
+                SushiDataGrid.Items.Add(s);
+            }
+          
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        //realization of adding to order list selected item
+        private void AddToOrderButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        //realization of commiting order (save to txt file)
+        private void commitOrderClick(object sender, RoutedEventArgs e)
+        {
 
         }
     }

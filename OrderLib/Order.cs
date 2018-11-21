@@ -49,7 +49,7 @@ namespace OrderLib
         public void submitOrder()
         {
 
-            StreamWriter streamWriter = new StreamWriter(@"C:\Users\tarik\source\repos\Task3\OrderLib\bin\Debug\Orders.txt",true);
+            StreamWriter streamWriter = new StreamWriter(@"\\Mac\Home\Documents\gitPlatform\SBTDDTask3\OrderLib\bin\Orders.txt", true);
             streamWriter.WriteLine("Order " + OrderN.getOrderNum() + " " + ClientFullName);
             foreach (var item in sushis)
                 streamWriter.WriteLine(item.Name + " " + item.Price);
@@ -93,6 +93,12 @@ namespace OrderLib
                             break;
                         case "Sashimi":
                             order.addToOrder(new Sashimi());
+                            break;
+                        case "Cheaps":
+                            order.addToOrder(new Cheaps());
+                            break;
+                        case "Rolls":
+                            order.addToOrder(new Rolls());
                             break;
                         case "Total":
                             isEnd = true;
