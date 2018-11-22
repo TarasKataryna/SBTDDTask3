@@ -131,5 +131,16 @@ namespace SushiTestProj
             sr.Close();
             Assert.AreEqual(440.0, Double.Parse(tmp[2]));
         }
+        [TestMethod]
+        public void TestSubmitOrder6()
+        {
+            Order order = new Order("Edik");
+            if (File.Exists(order.Path))
+                File.Delete(order.Path);
+            order.addToOrder(new Uramaki());
+            order.addToOrder(new Uramaki());
+            order.submitOrder();
+            Assert.AreEqual(0,order.sushis.Count);
+        }
     }
 }
