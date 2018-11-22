@@ -13,7 +13,7 @@ namespace OrderLib
         public double TotalPrice { get; protected set; }
         public string ClientFullName { get; protected set; }
         public bool isSubmitted = false;
-        string Path { get; set; }
+        public string Path { get; set; }
         public bool Exists { get; set; } = false;
         public int Counter { get; set; }
         public Order()
@@ -54,6 +54,8 @@ namespace OrderLib
 
         public void submitOrder()
         {
+            if (sushis.Count == 0)
+                return;
             string str = string.Empty;
             if (File.Exists(Path))
             {
