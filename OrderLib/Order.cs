@@ -17,16 +17,16 @@
 
         public Order()
         {
-            sushis = new List<Sushi>();
+            this.sushis = new List<Sushi>();
         }
 
         public Order(string name)
         {
-            sushis = new List<Sushi>();
-            ClientFullName = name;
+            this.sushis = new List<Sushi>();
+            this.ClientFullName = name;
             string path = Directory.GetCurrentDirectory() + @"\sushi.txt";
-            Path = path;
-            Counter = 1;
+            this.Path = path;
+            this.Counter = 1;
         }
 
         public double TotalPrice { get; protected set; }
@@ -79,6 +79,8 @@
         /// </summary>
         public void submitOrder()
         {
+            if (sushis.Count == 0)
+                return;
             string str = string.Empty;
             if (File.Exists(this.Path))
             {

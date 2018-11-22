@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task3", "Task3\Task3.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderLib", "OrderLib\OrderLib.csproj", "{71622913-F99C-4B9B-9F42-A68508FA0A29}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SushiTestProj", "SushiTestProj\SushiTestProj.csproj", "{1817A59F-A670-4B8E-8C5D-1C9FA3C6CD63}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{71622913-F99C-4B9B-9F42-A68508FA0A29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71622913-F99C-4B9B-9F42-A68508FA0A29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71622913-F99C-4B9B-9F42-A68508FA0A29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1817A59F-A670-4B8E-8C5D-1C9FA3C6CD63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1817A59F-A670-4B8E-8C5D-1C9FA3C6CD63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1817A59F-A670-4B8E-8C5D-1C9FA3C6CD63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1817A59F-A670-4B8E-8C5D-1C9FA3C6CD63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
