@@ -74,7 +74,11 @@ namespace Task3
 
         }
 
-        ////realization of adding to order list selected item
+        /// <summary>
+        /// Realization of adding to order list selected item
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddToOrderButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -120,6 +124,11 @@ namespace Task3
             }
         }
 
+        /// <summary>
+        /// Deleting selected shushi from order
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteFromOrderButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -164,8 +173,12 @@ namespace Task3
                 MessageBox.Show(ex.Message.ToString());
             }
         }
-    
-        ////realization of commiting order (save to txt file)
+
+        /// <summary>
+        /// realization of commiting order (save to txt file)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void commitOrderClick(object sender, RoutedEventArgs e)
         {
             order.submitOrder();
@@ -173,6 +186,11 @@ namespace Task3
             SushiOrder.Items.Clear();
         }
 
+        /// <summary>
+        /// Loging out as user
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnLogOut_Click(object sender, RoutedEventArgs e)
         {
             if (order.isSubmitted)

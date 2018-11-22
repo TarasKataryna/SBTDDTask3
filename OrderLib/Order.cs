@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace OrderLib
 {
+    /// <summary>
+    /// Save all the data about client and his/her order
+    /// </summary>
     public class Order
     {
         public List<Sushi> sushis;
@@ -29,12 +32,20 @@ namespace OrderLib
             Counter = 1;
         }
 
+        /// <summary>
+        /// Adding sushi to order 
+        /// </summary>
+        /// <param name="sushi"></param>
         public void addToOrder(Sushi sushi)
         {
             sushis.Add(sushi);
             TotalPrice += sushi.Price;
         }
 
+        /// <summary>
+        /// Deleting sushi from order
+        /// </summary>
+        /// <param name="sushi"></param>
         public void deleteFromOrder(Sushi sushi)
         {
             int index = sushis.FindIndex(v => v.Name == sushi.Name);
@@ -45,6 +56,10 @@ namespace OrderLib
             }
         }
 
+        /// <summary>
+        /// Deleting all sushi from order
+        /// </summary>
+        /// <param name="sushi"></param>
         public void deleteAllFromOrder(Sushi sushi)
         {
             int c = sushis.Count(s => s.Name == sushi.Name);
@@ -52,6 +67,9 @@ namespace OrderLib
             sushis.RemoveAll(v => v.Name == sushi.Name);
         }
 
+        /// <summary>
+        /// Submit order and write this order to db
+        /// </summary>
         public void submitOrder()
         {
             string str = string.Empty;
@@ -87,6 +105,12 @@ namespace OrderLib
             }
         }
 
+        /// <summary>
+        /// Finding orders in db by client name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="streamReader"></param>
+        /// <returns></returns>
         public Order findOrderByName(string name, StreamReader streamReader)
         {
             Order order = new Order();

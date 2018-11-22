@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace OrderLib
 {
+    /// <summary>
+    /// Class Maki inherit from Sushi
+    /// </summary>
     public class Maki : Sushi
     {
         public Maki()
@@ -15,5 +18,5 @@ namespace OrderLib
             Description = "Rice and filling wrapped in seaweed";
         }
     }
-    
+
 }
