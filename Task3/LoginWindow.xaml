@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Task3"
         mc:Ignorable="d"
-        Title="Login" Height="165" Width="250">
+        WindowStartupLocation="CenterScreen"
+        Title="Login" Height="185" Width="300">
     <StackPanel Margin="15 5">
-        <Label Content = "Login" FontSize="15" HorizontalAlignment="Center"/>
+        <Label Content = "Login" FontSize="20" HorizontalAlignment="Center"/>
         <Separator></Separator>
-        <Label Content = "Username" FontSize = "10"/>
+        <Label Content = "Username" FontSize = "15"/>
         <TextBox Name = "txtUsername"/>
         <Button Name = "btnSubmit" Content = "Submit" Margin = "70 15" Click="btnSubmit_Click"/>
     </StackPanel>
