@@ -37,7 +37,7 @@
 
         public int Counter { get; set; }
 
-        private string Path { get; set; }
+        public string Path { get; set; }
 
         /// <summary>
         /// Adding sushi to order 
