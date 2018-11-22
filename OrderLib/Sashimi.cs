@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace OrderLib
 {
+    /// <summary>
+    /// Class Sashimi inherit from Sushi
+    /// </summary>
     public class Sashimi : Sushi
     {
         public Sashimi()
