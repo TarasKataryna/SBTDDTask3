@@ -13,7 +13,9 @@ namespace OrderLib
         public double TotalPrice { get; protected set; }
         public string ClientFullName { get; protected set; }
         public bool isSubmitted = false;
-
+        string Path { get; set; }
+        public bool Exists { get; set; } = false;
+        public int Counter { get; set; }
         public Order()
         {
             sushis = new List<Sushi>();
@@ -22,6 +24,9 @@ namespace OrderLib
         {
             sushis = new List<Sushi>();
             ClientFullName = name;
+            string path = Directory.GetCurrentDirectory()+@"\sushi.txt";
+            Path = path;
+            Counter = 1;
         }
 
         public void addToOrder(Sushi sushi)
@@ -49,15 +54,37 @@ namespace OrderLib
 
         public void submitOrder()
         {
-
-            StreamWriter streamWriter = new StreamWriter(@"C:\Task3\SBTDDTask3\OrderLib\Orders.txt", true);
-            streamWriter.WriteLine("Order " + OrderN.getOrderNum() + " " + ClientFullName);
-            foreach (var item in sushis)
-                streamWriter.WriteLine(item.Name + " " + item.Price);
-            streamWriter.WriteLine("Total price: " + TotalPrice);
-            streamWriter.WriteLine();
-            streamWriter.Close();
-            isSubmitted = true;
+            string str = string.Empty;
+            if (File.Exists(Path))
+            {
+                FileStream fs = new FileStream(Path, FileMode.Open, FileAccess.ReadWrite);
+                using (StreamReader srr = new StreamReader(fs))
+                {
+                    str = srr.ReadToEnd();
+                    fs.Position = 0;
+                    Counter = Int32.Parse(srr.ReadLine().Split(' ')[1]);
+                    Counter++;
+                    Exists = true;
+                }                
+                File.Delete(Path);
+            }            
+            using (StreamWriter streamWriter = new StreamWriter(Path, true))
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.AppendLine("Order " + Counter + " " + ClientFullName);
+                foreach (var item in sushis)
+                {
+                    stringBuilder.AppendLine(item.Name + " " + item.Price);
+                }
+                stringBuilder.AppendLine("Total price: " + TotalPrice);
+                stringBuilder.AppendLine();
+                isSubmitted = true;
+                if (Exists)
+                    streamWriter.Write(stringBuilder + Environment.NewLine + str);
+                else
+                    streamWriter.Write(stringBuilder.ToString());
+                sushis.Clear();
+            }
         }
 
         public Order findOrderByName(string name, StreamReader streamReader)
