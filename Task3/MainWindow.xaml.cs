@@ -1,33 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using OrderLib;
-using System.Data;
-using System.IO;
-using Task3;
-
-namespace Task3
+﻿namespace Task3
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Windows;
+    using OrderLib;
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
         public Order order;
+
         public MainWindow()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             ////Order newO = new Order("q");
             ////newO.addToOrder(new Nigiri());
             ////newO.addToOrder(new Maki());
@@ -53,32 +40,27 @@ namespace Task3
 
         }
 
-        /// <summary>
-        /// MainWindow with object from LoginWindow
-        /// </summary>
-        /// <param name="o"></param>
         public MainWindow(Order o)
         {
-            InitializeComponent();
-            order = o;
+            this.InitializeComponent();
+            this.order = o;
 
             List<Sushi> allSushis = new List<Sushi> { new Maki(), new Nigiri(), new Sashimi(), new Uramaki(), new Rolls(), new Cheaps() };
             foreach (Sushi s in allSushis)
             {
-                SushiDataGrid.Items.Add(s);
+                this.SushiDataGrid.Items.Add(s);
             }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         /// <summary>
         /// Realization of adding to order list selected item
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Arguments</param>
         private void AddToOrderButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -87,34 +69,34 @@ namespace Task3
                 switch (ProductName)
                 {
                     case "Nigiri":
-                        order.addToOrder(new Nigiri());
-                        SushiOrder.Items.Add(order.sushis[order.sushis.Count - 1]);
-                        textBox.Text = order.TotalPrice.ToString();
+                        this.order.addToOrder(new Nigiri());
+                        this.SushiOrder.Items.Add(this.order.sushis[this.order.sushis.Count - 1]);
+                        this.textBox.Text = this.order.TotalPrice.ToString();
                         break;
                     case "Maki":
-                        order.addToOrder(new Maki());
-                        SushiOrder.Items.Add(order.sushis[order.sushis.Count - 1]);
-                        textBox.Text = order.TotalPrice.ToString();
+                        this.order.addToOrder(new Maki());
+                        this.SushiOrder.Items.Add(this.order.sushis[this.order.sushis.Count - 1]);
+                        this.textBox.Text = this.order.TotalPrice.ToString();
                         break;
                     case "Uramaki":
-                        order.addToOrder(new Uramaki());
-                        SushiOrder.Items.Add(order.sushis[order.sushis.Count - 1]);
-                        textBox.Text = order.TotalPrice.ToString();
+                        this.order.addToOrder(new Uramaki());
+                        this.SushiOrder.Items.Add(this.order.sushis[this.order.sushis.Count - 1]);
+                        this.textBox.Text = this.order.TotalPrice.ToString();
                         break;
                     case "Sashimi":
-                        order.addToOrder(new Sashimi());
-                        SushiOrder.Items.Add(order.sushis[order.sushis.Count - 1]);
-                        textBox.Text = order.TotalPrice.ToString();
+                        this.order.addToOrder(new Sashimi());
+                        this.SushiOrder.Items.Add(this.order.sushis[this.order.sushis.Count - 1]);
+                        this.textBox.Text = this.order.TotalPrice.ToString();
                         break;
                     case "Cheaps":
-                        order.addToOrder(new Cheaps());
-                        SushiOrder.Items.Add(order.sushis[order.sushis.Count - 1]);
-                        textBox.Text = order.TotalPrice.ToString();
+                        this.order.addToOrder(new Cheaps());
+                        this.SushiOrder.Items.Add(this.order.sushis[this.order.sushis.Count - 1]);
+                        this.textBox.Text = this.order.TotalPrice.ToString();
                         break;
                     case "Rolls":
-                        order.addToOrder(new Rolls());
-                        SushiOrder.Items.Add(order.sushis[order.sushis.Count - 1]);
-                        textBox.Text = order.TotalPrice.ToString();
+                        this.order.addToOrder(new Rolls());
+                        this.SushiOrder.Items.Add(this.order.sushis[this.order.sushis.Count - 1]);
+                        this.textBox.Text = this.order.TotalPrice.ToString();
                         break;
                 }
             }
@@ -127,44 +109,44 @@ namespace Task3
         /// <summary>
         /// Deleting selected shushi from order
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Arguments</param>
         private void DeleteFromOrderButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                String ProductName = (SushiOrder.SelectedItem as Sushi).Name; ;
+                String ProductName = (this.SushiOrder.SelectedItem as Sushi).Name;
                 switch (ProductName)
                 {
                     case "Nigiri":
-                        order.deleteFromOrder(new Nigiri());
-                        SushiOrder.Items.Remove((SushiOrder.SelectedItem as Sushi));
-                        textBox.Text = order.TotalPrice.ToString();
+                        this.order.deleteFromOrder(new Nigiri());
+                        this.SushiOrder.Items.Remove((SushiOrder.SelectedItem as Sushi));
+                        this.textBox.Text = this.order.TotalPrice.ToString();
                         break;
                     case "Maki":
-                        order.deleteFromOrder(new Maki());
-                        SushiOrder.Items.Remove((SushiOrder.SelectedItem as Sushi));
-                        textBox.Text = order.TotalPrice.ToString();
+                        this.order.deleteFromOrder(new Maki());
+                        this.SushiOrder.Items.Remove((SushiOrder.SelectedItem as Sushi));
+                        this.textBox.Text = this.order.TotalPrice.ToString();
                         break;
                     case "Uramaki":
-                        order.deleteFromOrder(new Uramaki());
-                        SushiOrder.Items.Remove((SushiOrder.SelectedItem as Sushi));
-                        textBox.Text = order.TotalPrice.ToString();
+                        this.order.deleteFromOrder(new Uramaki());
+                        this.SushiOrder.Items.Remove((SushiOrder.SelectedItem as Sushi));
+                        this.textBox.Text = this.order.TotalPrice.ToString();
                         break;
                     case "Sashimi":
-                        order.deleteFromOrder(new Sashimi());
-                        SushiOrder.Items.Remove((SushiOrder.SelectedItem as Sushi));
-                        textBox.Text = order.TotalPrice.ToString();
+                        this.order.deleteFromOrder(new Sashimi());
+                        this.SushiOrder.Items.Remove((SushiOrder.SelectedItem as Sushi));
+                        this.textBox.Text = this.order.TotalPrice.ToString();
                         break;
                     case "Cheaps":
-                        order.deleteFromOrder(new Cheaps());
-                        SushiOrder.Items.Remove((SushiOrder.SelectedItem as Sushi));
-                        textBox.Text = order.TotalPrice.ToString();
+                        this.order.deleteFromOrder(new Cheaps());
+                        this.SushiOrder.Items.Remove((SushiOrder.SelectedItem as Sushi));
+                        this.textBox.Text = this.order.TotalPrice.ToString();
                         break;
                     case "Rolls":
-                        order.deleteFromOrder(new Rolls());
-                        SushiOrder.Items.Remove((SushiOrder.SelectedItem as Sushi));
-                        textBox.Text = order.TotalPrice.ToString();
+                        this.order.deleteFromOrder(new Rolls());
+                        this.SushiOrder.Items.Remove((SushiOrder.SelectedItem as Sushi));
+                        this.textBox.Text = this.order.TotalPrice.ToString();
                         break;
                 }
             }
@@ -177,23 +159,23 @@ namespace Task3
         /// <summary>
         /// realization of commiting order (save to txt file)
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Arguments</param>
         private void commitOrderClick(object sender, RoutedEventArgs e)
         {
-            order.submitOrder();
-            textBox.Text = 0.ToString();
-            SushiOrder.Items.Clear();
+            this.order.submitOrder();
+            this.textBox.Text = 0.ToString();
+            this.SushiOrder.Items.Clear();
         }
 
         /// <summary>
         /// Loging out as user
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Arguments</param>
         private void btnLogOut_Click(object sender, RoutedEventArgs e)
         {
-            if (order.isSubmitted)
+            if (this.order.isSubmitted)
             {
                 LoginWindow loginWindow = new LoginWindow();
                 loginWindow.Show();
@@ -218,10 +200,7 @@ namespace Task3
                     case MessageBoxResult.No:
                         break;
                 }
-
             }
         }
-
-       
     }
 }

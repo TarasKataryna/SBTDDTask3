@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OrderLib
+﻿namespace OrderLib
 {
     /// <summary>
     /// Class Maki inherit from Sushi
@@ -18,5 +12,4 @@ namespace OrderLib
             Description = "Rice and filling wrapped in seaweed";
         }
     }
-
 }

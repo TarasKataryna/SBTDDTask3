@@ -1,70 +1,77 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OrderLib
+﻿namespace OrderLib
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+
     /// <summary>
     /// Save all the data about client and his/her order
     /// </summary>
     public class Order
     {
         public List<Sushi> sushis;
-        public double TotalPrice { get; protected set; }
-        public string ClientFullName { get; protected set; }
+
         public bool isSubmitted = false;
-        public string Path { get; set; }
-        public bool Exists { get; set; } = false;
-        public int Counter { get; set; }
+
         public Order()
         {
-            sushis = new List<Sushi>();
+            this.sushis = new List<Sushi>();
         }
+
         public Order(string name)
         {
-            sushis = new List<Sushi>();
-            ClientFullName = name;
-            string path = Directory.GetCurrentDirectory()+@"\sushi.txt";
-            Path = path;
-            Counter = 1;
+            this.sushis = new List<Sushi>();
+            this.ClientFullName = name;
+            string path = Directory.GetCurrentDirectory() + @"\sushi.txt";
+            this.Path = path;
+            this.Counter = 1;
         }
+
+        public double TotalPrice { get; protected set; }
+
+        public string ClientFullName { get; protected set; }
+
+        public bool Exists { get; set; } = false;
+
+        public int Counter { get; set; }
+
+        public string Path { get; set; }
 
         /// <summary>
         /// Adding sushi to order 
         /// </summary>
-        /// <param name="sushi"></param>
+        /// <param name="sushi">Sushi that you want add to order</param>
         public void addToOrder(Sushi sushi)
         {
-            sushis.Add(sushi);
-            TotalPrice += sushi.Price;
+            this.sushis.Add(sushi);
+            this.TotalPrice += sushi.Price;
         }
 
         /// <summary>
         /// Deleting sushi from order
         /// </summary>
-        /// <param name="sushi"></param>
+        /// <param name="sushi">Sushi that you want delete from order</param>
         public void deleteFromOrder(Sushi sushi)
         {
-            int index = sushis.FindIndex(v => v.Name == sushi.Name);
+            int index = this.sushis.FindIndex(v => v.Name == sushi.Name);
             if (index != -1)
             {
-                sushis.RemoveAt(index);
-                TotalPrice -= sushi.Price;
+                this.sushis.RemoveAt(index);
+                this.TotalPrice -= sushi.Price;
             }
         }
 
         /// <summary>
         /// Deleting all sushi from order
         /// </summary>
-        /// <param name="sushi"></param>
+        /// <param name="sushi">Delete all shushi</param>
         public void deleteAllFromOrder(Sushi sushi)
         {
-            int c = sushis.Count(s => s.Name == sushi.Name);
-            TotalPrice -= c * sushi.Price;
-            sushis.RemoveAll(v => v.Name == sushi.Name);
+            int c = this.sushis.Count(s => s.Name == sushi.Name);
+            this.TotalPrice -= c * sushi.Price;
+            this.sushis.RemoveAll(v => v.Name == sushi.Name);
         }
 
         /// <summary>
@@ -75,44 +82,52 @@ namespace OrderLib
             if (sushis.Count == 0)
                 return;
             string str = string.Empty;
-            if (File.Exists(Path))
+            if (File.Exists(this.Path))
             {
-                FileStream fs = new FileStream(Path, FileMode.Open, FileAccess.ReadWrite);
+                FileStream fs = new FileStream(this.Path, FileMode.Open, FileAccess.ReadWrite);
                 using (StreamReader srr = new StreamReader(fs))
                 {
                     str = srr.ReadToEnd();
                     fs.Position = 0;
-                    Counter = Int32.Parse(srr.ReadLine().Split(' ')[1]);
-                    Counter++;
-                    Exists = true;
-                }                
-                File.Delete(Path);
-            }            
-            using (StreamWriter streamWriter = new StreamWriter(Path, true))
+                    this.Counter = Int32.Parse(srr.ReadLine().Split(' ')[1]);
+                    this.Counter++;
+                    this.Exists = true;
+                }
+
+                File.Delete(this.Path);
+            }
+
+            using (StreamWriter streamWriter = new StreamWriter(this.Path, true))
             {
                 StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.AppendLine("Order " + Counter + " " + ClientFullName);
-                foreach (var item in sushis)
+                stringBuilder.AppendLine("Order " + this.Counter + " " + this.ClientFullName);
+                foreach (var item in this.sushis)
                 {
                     stringBuilder.AppendLine(item.Name + " " + item.Price);
                 }
-                stringBuilder.AppendLine("Total price: " + TotalPrice);
+
+                stringBuilder.AppendLine("Total price: " + this.TotalPrice);
                 stringBuilder.AppendLine();
-                isSubmitted = true;
-                if (Exists)
+                this.isSubmitted = true;
+                if (this.Exists)
+                {
                     streamWriter.Write(stringBuilder + Environment.NewLine + str);
+                }
                 else
+                {
                     streamWriter.Write(stringBuilder.ToString());
-                sushis.Clear();
+                }
+
+                    this.sushis.Clear();
             }
         }
 
         /// <summary>
         /// Finding orders in db by client name
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="streamReader"></param>
-        /// <returns></returns>
+        /// <param name="name">Name of client</param>
+        /// <param name="streamReader">Stream to read from file</param>
+        /// <returns>Return the founded order</returns>
         public Order findOrderByName(string name, StreamReader streamReader)
         {
             Order order = new Order();
@@ -128,6 +143,7 @@ namespace OrderLib
                     isFind = true;
                 }
             }
+
             if (isFind)
             {
                 string[] arr;
@@ -159,10 +175,11 @@ namespace OrderLib
                             isEnd = true;
                             break;
                     }
+
                     str = streamReader.ReadLine();
                 }
-
             }
+
             return order;
         }
     }
